@@ -2,8 +2,9 @@ package com.finalwebpro.ourfilm.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class commentServlet
+ * Servlet implementation class CommentServlet
  */
-@WebServlet("/commentServlet")
-public class commentServlet extends HttpServlet {
+@WebServlet("/CommentServlet")
+public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CommentDao CommentDao;
 	
@@ -74,10 +75,16 @@ public class commentServlet extends HttpServlet {
 	
 	private void listComment(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		List<Comment> listComment = commentDAO.selectAllComments();
-		request.setAttribute("listComment", listComment);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("comment-list.jsp");
-		dispatcher.forward(request, response);
+		
+		try {
+			List<Comment> listComment = commentDAO.selectAllComments();
+			request.setAttribute("listComment", listComment);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("comment-list.jsp");
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.PrintStackTrace();
+		}
+		
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
@@ -89,10 +96,18 @@ public class commentServlet extends HttpServlet {
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		Comment existingComment = CommentDao.selectComment(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("comment-form.jsp");
-		request.setAttribute("comment", existingComment);
-		dispatcher.forward(request, response);
+		
+		Comment existingComment;
+		
+		try {
+			Comment existingComment = CommentDao.selectComment(id);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("comment-form.jsp");
+			request.setAttribute("comment", existingComment);
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace;
+		}
+		
 
 	}
 
@@ -121,7 +136,11 @@ public class commentServlet extends HttpServlet {
 	private void deleteComment(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		CommentDao.deleteComment(id);
+		try {
+			CommentDao.deleteComment(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		response.sendRedirect("list");
 
 	}

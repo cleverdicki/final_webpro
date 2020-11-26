@@ -14,6 +14,7 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 public class CommentDao {
 	private String jdbcURL = "jdbc:mysql://localhost:3306/userdb?useSSL=false";
 	private String jdbcUsername = "root";
+	//private String jdbcDriver = "com.mysql.jdbd.Driver";
 
 	private static final String INSERT_COMMENTS_SQL = "INSERT INTO comments" + "  (name_film, distributor_film, comment_film) VALUES "
 			+ " (?, ?, ?);";

@@ -48,6 +48,7 @@
 						<th>Name</th>
 						<th>Distributor</th>
 						<th>Your Comment</th>
+						<th>Time</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -60,6 +61,7 @@
 							<td><c:out value="${comment.name_film}" /></td>
 							<td><c:out value="${comment.distributor_film}" /></td>
 							<td><c:out value="${comment.comment_film}" /></td>
+							<td><c:out value="${comment.timestamp}" /></td>
 							<td><a href="edit?id=<c:out value='${comment.id}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a
 								href="delete?id=<c:out value='${comment.id}' />">Delete</a></td>
