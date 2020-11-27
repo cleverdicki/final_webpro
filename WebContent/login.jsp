@@ -8,8 +8,8 @@
 				<h2>Login</h2>
 				<form action="login" method="post">
 				<div class="box-input">
-					<input type="text" name="name_user">
-					<label>Username</label>
+					<input type="text" name="email_user">
+					<label>Email</label>
 				</div>
 				<div class="box-input">
 					<input type="password" name="password_user">

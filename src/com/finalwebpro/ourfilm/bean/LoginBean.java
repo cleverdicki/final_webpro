@@ -3,6 +3,7 @@ package com.finalwebpro.ourfilm.bean;
 public class LoginBean {
 	private String email_user;
 	private String password_user;
+	
 	public String getEmail_user() {
 		return email_user;
 	}
