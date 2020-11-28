@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.finalwebpro.ourfilm.bean.LoginBean;
 import com.finalwebpro.ourfilm.dao.UserDao;
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("name_user");
+		String username = request.getParameter("email_user");
 		String password = request.getParameter("password_user");
 
 		LoginBean loginBean = new LoginBean();
@@ -51,7 +52,9 @@ public class LoginServlet extends HttpServlet {
 
 		UserDao loginDao = new UserDao();
 		if (loginDao.validate(loginBean)) {
-			response.sendRedirect("comment-list.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("email_user", username);
+			response.sendRedirect("mainpage.jsp?email_user="+username);
 		} else {
 			response.sendRedirect("login.jsp");
 		}

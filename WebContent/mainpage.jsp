@@ -9,6 +9,7 @@
 <body>
 <div align="center">
 	<h1>Success login/Register</h1>
+	<button><a href="logout">Log Out</a></button>
 </div>
 </body>
 </html>

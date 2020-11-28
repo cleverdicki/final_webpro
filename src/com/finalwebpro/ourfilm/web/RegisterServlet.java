@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 		RegisterBean registerBean = new RegisterBean(name_user, email_user, password_user);
 		UserDao registerDao = new UserDao();
 		if (registerDao.insert(registerBean) == 1) {
-			response.sendRedirect("comment-list.jsp");
+			response.sendRedirect("login.jsp");
 		} else {
 			response.sendRedirect("register.jsp");
 		}
