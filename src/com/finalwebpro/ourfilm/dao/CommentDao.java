@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.finalwebpro.ourfilm.bean.Comment;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+//import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 public class CommentDao {
 	private String jdbcURL = "jdbc:mysql://localhost:3306/userdb?useSSL=false";
 	private String jdbcUsername = "root";
 	//private String jdbcDriver = "com.mysql.jdbd.Driver";
 
-	private static final String INSERT_COMMENTS_SQL = "INSERT INTO comments" + "  (name_film, distributor_film, comment_film) VALUES "
+	private static final String INSERT_COMMENTS_SQL = "INSERT INTO comments" + "  (name_film, distributor_film, comment_film, date_comment) VALUES "
 			+ " (?, ?, ?);";
 
-	private static final String SELECT_COMMENT_BY_ID = "select id, name_film, distributor_film, comment_film from comments where id =?";
+	private static final String SELECT_COMMENT_BY_ID = "select id, name_film, distributor_film, comment_film, date_comment from comments where id =?";
 	private static final String SELECT_ALL_COMMENTS = "select * from comments";
 	private static final String DELETE_COMMENTS_SQL = "delete from comments where id = ?;";
-	private static final String UPDATE_COMMENTS_SQL = "update comments set name_film = ?,distributor_film= ?, comment_film =? where id = ?;";
+	private static final String UPDATE_COMMENTS_SQL = "update comments set name_film = ?,distributor_film= ?, comment_film =?, date_comment= ?, where id = ?;";
 
 	public CommentDao() {
 	}
@@ -50,6 +50,7 @@ public class CommentDao {
 			preparedStatement.setString(1, comment.getname_film());
 			preparedStatement.setString(2, comment.getdistributor_film());
 			preparedStatement.setString(3, comment.getcomment_film());
+			preparedStatement.setString(4, comment.getdate_comment());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -73,7 +74,9 @@ public class CommentDao {
 				String name_film = rs.getString("name_film");
 				String distributor_film = rs.getString("distributor_film");
 				String comment_film = rs.getString("comment_film");
-				comment = new Comment(id, name_film, distributor_film, comment_film);
+				String date_comment = rs.getString("date_comment");
+				comment = new Comment();
+				//comment = new Comment(id, name_film, distributor_film, comment_film, date_comment);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -100,7 +103,8 @@ public class CommentDao {
 				String name_film = rs.getString("name_film");
 				String distributor_film = rs.getString("distributor_film");
 				String comment_film = rs.getString("comment_film");
-				comments.add(new Comment(id, name_film, distributor_film, comment_film));
+				String date_comment = rs.getString("date_comment");
+				comments.add(new Comment(id, name_film, distributor_film, comment_film, date_comment));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -124,9 +128,10 @@ public class CommentDao {
 				PreparedStatement statement = connection.prepareStatement(UPDATE_COMMENTS_SQL);) {
 			System.out.println("Your comment has been updated:"+statement);
 			statement.setString(1, comment.getname_film());
-			statement.setString(2, comment.getdistributor());
+			statement.setString(2, comment.getdistributor_film());
 			statement.setString(3, comment.getcomment_film());
-			statement.setInt(4, comment.getId());
+			statement.setString(4, comment.getdate_comment());
+			statement.setInt(5, comment.getId());
 
 			rowUpdated = statement.executeUpdate() > 0;
 		}

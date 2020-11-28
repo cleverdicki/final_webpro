@@ -55,19 +55,25 @@
 				<fieldset class="form-group">
 					<label>Film's Name</label> <input type="text"
 						value="<c:out value='${comment.name_film}' />" class="form-control"
-						name="name" required="required">
+						name="name_film" required="required">
 				</fieldset>
 
 				<fieldset class="form-group">
 					<label>Film's Distributor</label> <input type="text"
 						value="<c:out value='${comment.distributor_film}' />" class="form-control"
-						name="email">
+						name="distributor_film">
 				</fieldset>
 
 				<fieldset class="form-group">
 					<label>Comment</label> <input type="text"
 						value="<c:out value='${comment.comment_film}' />" class="form-control"
-						name="country">
+						name="comment_film">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Date</label> <input type="text"
+						value="<c:out value='${comment.date_comment}' />" class="form-control"
+						name="date_comment">
 				</fieldset>
 
 				<button type="submit" class="btn btn-success">Save</button>

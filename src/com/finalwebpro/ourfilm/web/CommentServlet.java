@@ -2,14 +2,17 @@ package com.finalwebpro.ourfilm.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.finalwebpro.ourfilm.bean.Comment;
+import com.finalwebpro.ourfilm.dao.CommentDao;
 
 /**
  * Servlet implementation class CommentServlet
@@ -24,12 +27,13 @@ public class CommentServlet extends HttpServlet {
 	}
        
     /**
+     * @return 
      * @see HttpServlet#HttpServlet()
      */
-    public commentServlet() {
-        super();
+    //public void commentServlet() {
+      //  super();
         // TODO Auto-generated constructor stub
-    }
+    //}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -77,7 +81,7 @@ public class CommentServlet extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		
 		try {
-			List<Comment> listComment = commentDAO.selectAllComments();
+			List<Comment> listComment = CommentDao.selectAllComments();
 			request.setAttribute("listComment", listComment);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("comment-list.jsp");
 			dispatcher.forward(request, response);
@@ -97,7 +101,7 @@ public class CommentServlet extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		Comment existingComment;
+		//Comment existingComment;
 		
 		try {
 			Comment existingComment = CommentDao.selectComment(id);
@@ -116,7 +120,9 @@ public class CommentServlet extends HttpServlet {
 		String name_film = request.getParameter("name_film");
 		String distributor_film = request.getParameter("distributor_film");
 		String comment_film = request.getParameter("comment_film");
-		Comment newComment = new Comment(name_film, distributor_film, comment_film);
+		String date_comment = request.getParameter("date_comment");
+		Comment newComment = new Comment();
+		//Comment newComment = new Comment(name_film, distributor_film, comment_film, date_comment);
 		CommentDao.insertComment(newComment);
 		response.sendRedirect("list");
 	}
@@ -127,8 +133,9 @@ public class CommentServlet extends HttpServlet {
 		String name_film = request.getParameter("name_film");
 		String distributor_film = request.getParameter("distributor_film");
 		String comment_film = request.getParameter("comment_film");
-
-		Comment book = new Comment(id, name_film, distributor_film, comment_film);
+		String date_comment = request.getParameter("date_comment");
+		Comment book = new Comment();
+		//Comment book = new Comment(id, name_film, distributor_film, comment_film, date_comment);
 		CommentDao.updateComment(book);
 		response.sendRedirect("list");
 	}

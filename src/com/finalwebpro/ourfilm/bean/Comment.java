@@ -9,22 +9,23 @@ public class Comment {
 	protected String name_film;
 	protected String distributor_film;
 	protected String comment_film;
-	protected String date;
-	protected String millis;
+	protected String date_comment;
+	//protected String millis;
 	
-	public Comment(int id2, String name_film2, String distributor_film2, String comment_film2) {
+	//public Comment(int id2, String name_film2, String distributor_film2, String comment_film2) {
 		// TODO Auto-generated constructor stub
-	}
+	//}
 
 	public void User() {
 		
 	}
 	
-	public void User(String name_film, String distributor_film, String comment_film) {
+	public void User(String name_film, String distributor_film, String comment_film, String date_comment) {
 		super();
 		this.name_film = name_film;
 		this.distributor_film = distributor_film;
 		this.comment_film = comment_film;
+		this.date_comment = date_comment;
 	}
 
 	public void User(int id, String name_film, String distributor_film, String comment_film) {
@@ -33,13 +34,14 @@ public class Comment {
 		this.name_film = name_film;
 		this.distributor_film = distributor_film;
 		this.comment_film = comment_film;
+		this.date_comment = date_comment;
 	}
 
-	public void main(String[] args) {
+	//public void main(String[] args) {
 		// src: https://ramj2ee.blogspot.com/2018/12/how-to-create-javasqltimestamp-object.html
-		long millis = System.currentTimeMillis();
-        Timestamp timestamp = new Timestamp(millis);
-	}
+		//long millis = System.currentTimeMillis();
+        //Timestamp timestamp = new Timestamp(millis);
+	//}
 	
 	public int getId() {
 		return id;
@@ -53,16 +55,22 @@ public class Comment {
 	public void setname_film(String name_film) {
 		this.name_film = name_film;
 	}
-	public String getEmail() {
+	public String getdistributor_film() {
 		return distributor_film;
 	}
-	public void setEmail(String distributor_film) {
+	public void setdistributor_film(String distributor_film) {
 		this.distributor_film = distributor_film;
 	}
-	public String getCountry() {
+	public String getcomment_film() {
 		return comment_film;
 	}
-	public void setCountry(String comment_film) {
+	public void setcomment_film(String comment_film) {
 		this.comment_film = comment_film;
+	}
+	public String getdate_comment() {
+		return date_comment;
+	}
+	public void setdate_comment(String comment_film) {
+		this.date_comment = date_comment;
 	}
 }
