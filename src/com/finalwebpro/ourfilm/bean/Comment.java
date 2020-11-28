@@ -2,9 +2,9 @@
 
 package com.finalwebpro.ourfilm.bean;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-import java.sql.Timestamp;
-import java.util.Date;
+//import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+//import java.sql.Timestamp;
+//import java.util.Date;
 
 public class Comment {
 	protected int id;
@@ -30,7 +30,7 @@ public class Comment {
 		this.date_comment = date_comment;
 	}
 
-	public void User(int id, String name_film, String distributor_film, String comment_film) {
+	public void User(int id, String name_film, String distributor_film, String comment_film, String date_comment) {
 		super();
 		this.id = id;
 		this.name_film = name_film;
@@ -72,7 +72,7 @@ public class Comment {
 	public String getdate_comment() {
 		return date_comment;
 	}
-	public void setdate_comment(String comment_film) {
+	public void setdate_comment(String date_comment) {
 		this.date_comment = date_comment;
 	}
 }

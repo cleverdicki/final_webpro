@@ -16,10 +16,11 @@ import com.finalwebpro.ourfilm.bean.Comment;
 public class CommentDao {
 	private String jdbcURL = "jdbc:mysql://localhost:3306/userdb?useSSL=false";
 	private String jdbcUsername = "root";
+	private String jdbcPassword = "root";
 	//private String jdbcDriver = "com.mysql.jdbd.Driver";
 
 	private static final String INSERT_COMMENTS_SQL = "INSERT INTO comments" + "  (name_film, distributor_film, comment_film, date_comment) VALUES "
-			+ " (?, ?, ?);";
+			+ " (?, ?, ?, ?);";
 
 	private static final String SELECT_COMMENT_BY_ID = "select id, name_film, distributor_film, comment_film, date_comment from comments where id =?";
 	private static final String SELECT_ALL_COMMENTS = "select * from comments";
@@ -33,7 +34,7 @@ public class CommentDao {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(jdbcURL, jdbcUsername);
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
