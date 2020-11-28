@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.finalwebpro.ourfilm.bean.LoginBean;
-import com.finalwebpro.ourfilm.dao.UserDao;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class logout
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public LogoutServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,6 +31,9 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		session.removeAttribute("email_user");
+		response.sendRedirect("login.jsp");
 	}
 
 	/**
@@ -43,21 +43,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("email_user");
-		String password = request.getParameter("password_user");
-
-		LoginBean loginBean = new LoginBean();
-		loginBean.setEmail_user(username);
-		loginBean.setPassword_user(password);
-
-		UserDao loginDao = new UserDao();
-		if (loginDao.validate(loginBean)) {
-			HttpSession session = request.getSession();
-			session.setAttribute("email_user", username);
-			response.sendRedirect("mainpage.jsp?email_user="+username);
-		} else {
-			response.sendRedirect("login.jsp");
-		}
+		doGet(request, response);
 	}
 
 }

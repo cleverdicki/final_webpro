@@ -30,6 +30,7 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
+				<form>
 				<c:if test="${comment != null}">
 					<form action="update" method="post">
 				</c:if>
