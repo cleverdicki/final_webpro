@@ -54,8 +54,8 @@ public class LoginServlet extends HttpServlet {
 		if (loginDao.validate(loginBean)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("email_user", username);
-			//response.sendRedirect("mainpage.jsp?email_user="+username);
-			response.sendRedirect("comment-list.jsp?email_user="+username);
+			response.sendRedirect("mainpage.jsp?email_user="+username);
+			//response.sendRedirect("comment-list.jsp?email_user="+username);
 		} else {
 			response.sendRedirect("login.jsp");
 		}

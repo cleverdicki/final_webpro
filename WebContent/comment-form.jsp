@@ -1,12 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Comment Section</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,11 +10,12 @@
 	crossorigin="anonymous">
 </head>
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: gray">
 			<div>
-				<a href="https://www.xadmin.net" class="navbar-brand"> Comment Section </a>
+				<a href="https://www.javaguides.net" class="navbar-brand"> Comment Section </a>
 			</div>
 
 			<ul class="navbar-nav">
@@ -31,7 +28,6 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				//<form>
 				<c:if test="${comment != null}">
 					<form action="update" method="post">
 				</c:if>
@@ -70,9 +66,9 @@
 					<label>Comment</label> <input type="text"
 						value="<c:out value='${comment.comment_film}' />" class="form-control"
 						name="comment_film">
-				</fieldset>
-				
-				<fieldset class="form-group">
+                </fieldset>
+                
+                <fieldset class="form-group">
 					<label>Date</label> <input type="text"
 						value="<c:out value='${comment.date_comment}' />" class="form-control"
 						name="date_comment">

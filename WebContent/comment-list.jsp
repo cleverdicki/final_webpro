@@ -16,7 +16,7 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: yellow">
+			style="background-color: blue">
 			<div>
 				<a href="https://www.xadmin.net" class="navbar-brand"> Comment Section </a>
 			</div>
@@ -30,7 +30,7 @@
 	<br>
 
 	<div class="row">
-		<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+		
 
 		<div class="container">
 			<h3 class="text-center">List of Comments</h3>

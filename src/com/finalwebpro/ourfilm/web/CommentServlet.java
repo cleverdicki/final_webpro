@@ -123,8 +123,8 @@ public class CommentServlet extends HttpServlet {
 		String distributor_film = request.getParameter("distributor_film");
 		String comment_film = request.getParameter("comment_film");
 		String date_comment = request.getParameter("date_comment");
-		Comment newComment = new Comment();
-		//Comment newComment = new Comment(name_film, distributor_film, comment_film, date_comment);
+		//Comment newComment = new Comment();
+		Comment newComment = new Comment(name_film, distributor_film, comment_film, date_comment);
 		CommentDao.insertComment(newComment);
 		response.sendRedirect("list");
 	}
@@ -136,8 +136,8 @@ public class CommentServlet extends HttpServlet {
 		String distributor_film = request.getParameter("distributor_film");
 		String comment_film = request.getParameter("comment_film");
 		String date_comment = request.getParameter("date_comment");
-		Comment book = new Comment();
-		//Comment book = new Comment(id, name_film, distributor_film, comment_film, date_comment);
+		//Comment book = new Comment();
+		Comment book = new Comment(id, name_film, distributor_film, comment_film, date_comment);
 		CommentDao.updateComment(book);
 		response.sendRedirect("list");
 	}
